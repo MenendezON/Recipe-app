@@ -1,0 +1,42 @@
+<div id="recipes">
+<h1 id="recipes-heading">Recipes</h1>
+<hr>
+
+<button id="new-recipe-button">
+<%= link_to 'New Recipe', new_recipe_path, id: "new-recipe" %>
+</button>
+
+<% if @recipes.empty? %>
+    <div>
+        <h3 class="text-center">No Recipes yet.</h3>
+    </div>
+<% else %>
+
+    <% @recipes.each_with_index do |recipe, index| %>
+        <div class="recipe">
+        <div class="recipe-main-info">
+        <div class="recipe-heading">
+        <h2>Recipe <%= index + 1 %></h2>
+        </div>
+            <div class="recipe-name">
+                <h3><%= recipe.name %></h3>
+            </div>
+            <div class="recipe-actions">
+                <button class="btn btn-primary">
+                    <%= link_to 'Show', recipe_path(recipe) %>
+                </button>
+                <button class="btn btn-danger">
+                    <%= link_to 'Delete', recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, method: :delete %>
+                </button>
+            </div>
+        </div>
+            <div class="recipe-description">
+                <p>
+                <%= recipe.description %>
+                </p>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+</div>
+

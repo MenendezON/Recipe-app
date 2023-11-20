@@ -1,0 +1,125 @@
+Update the database schema with the following commands:
+
+rails db:create
+
+rails generate migration CreateUsers name:string
+
+rails generate migration CreateInventories name:string user:references
+
+rails generate migration CreateRecipes name:string preparation_time:decimal cooking_time:decimal description:text public:boolean user:references
+
+rails generate migration CreateFoods name:string measurement_unit_kg:decimal price:decimal
+
+rails generate migration CreateInventoryFoods quantity_kg:decimal inventory:references food:references
+
+rails generate migration CreateRecipeFoods quantity_kg:decimal recipe:references food:references
+
+rails db:migrate
+
+rails db:seed
+
+rails db:rollback
+
+rails db:migrate RAILS_ENV=test
+
+bundle install --gemfile
+
+rails generate model User name:string
+
+rails generate model Recipe name:string preparation_time:decimal cooking_time:decimal description:text public:boolean user:references
+
+rails generate model Food name:string measurement_unit:decimal price_dollars:decimal
+
+rails generate model RecipeFood quantity:decimal recipe:references food:references
+
+rails generate model Inventory name:string user:references rails generate model InventoryFood quantity:decimal inventory:references, food:references
+
+# Create Controllers and View
+
+rails generate controller Users
+
+rails generate controller Recipes 
+
+rails generate controller Foods
+
+rails generate controller Inventories
+
+rails generate controller InventoryFoods
+
+rails generate controller RecipeFoods
+
+rails generate controller PublicRecipes
+
+rails generate controller Inventories index show new create destroy
+
+# Remove the following generated files
+
+rails destroy controller Inventories index show new create destroy
+
+# Update Recipes Tables rename preparation_time_minutes to preparation_time_hours
+
+rails generate migration RenamePreparationTimeMinutesToPreparationTimeHours
+
+# Update Recipes Tables rename cooking_time_minutes to cooking_time_hours
+
+rails generate migration RenameCookingTimeMinutesToCookingTimeHours
+
+# Update recipes_foods table column data type from decimal to integer
+
+rails generate migration ChangeQuantityDecimalToInteger
+
+# Update inventory_foods table column data type from decimal to integer
+
+rails generate migration ChangeQuantityDecimalToInteger
+
+# Update foods table column price_dollars data type from decimal to integer
+
+rails generate migration ChangePriceDollarsDecimalToInteger
+
+# Add Routes to config/routes.rb for Controllers
+
+resources :users, only: [:index, :show, :new, :create, :destroy]
+
+resources :inventories, only: [:index, :show, :new, :create, :destroy]
+
+resources :recipes, only: [:index, :show, :new, :create, :destroy]
+
+resources :public_recipes, only: [:index, :show]
+
+resources :foods, only: [:index, :show, :new, :create, :destroy]
+
+# Snippets 
+
+class InventoryFoodsController < ApplicationController
+  def new
+    @inventory = Inventory.find_by(id: params[:inventory_id])
+    @inventory_food = InventoryFood.new
+  end
+
+  def create
+    @inventory_food = InventoryFood.new(food_id: params[:food][:food_id], inventory_id: params[:inventory_id],
+                                        quantity: params[:quantity])
+
+    if @inventory_food.save
+      redirect_to inventory_path(@inventory_food.inventory_id), notice: 'Successfully added a food.'
+    else
+      render :new, alert: 'Something happened.'
+    end
+  end
+
+  def destroy
+    @inventory_food = InventoryFood.destroy(params[:id])
+
+    if @inventory_food.destroyed?
+      redirect_to inventories_path, notice: 'Successfully deleted food.'
+    else
+      render :new, alert: 'Could not delete food.'
+    end
+  end
+end
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<h2>Add new food</h2>
+
+    <%= form_with model: @food do |form| %>
+        <% if @food.errors.any? %>
+            <div>
+                <% @food.errors.full_messages.each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
+        <% end %>
+
+        <div>
+            <%= form.label :name %> <br>
+            <%= form.text_field :name %>
+        </div>
+
+        <div>
+            <%= form.label :measurement_unit %> <br>
+            <%= form.text_field :measurement_unit %>
+        </div>
+
+        <div>
+            <%= form.label :price_dollars %> <br>
+            <%= form.number_field :price_dollars, step: 0.01 %>
+        </div>
+        <p><%= form.submit "Create", data: { turbo: false }, class: "btn btn-primary" %></p>
+    <% end %>

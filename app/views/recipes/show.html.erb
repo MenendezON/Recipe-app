@@ -1,0 +1,163 @@
+<div>
+<% if @recipe.public || @recipe.user == current_user %>
+<h1 class="show-recipe-heading">Recipe 1</h1>
+    <h2 class="show-recipe-name"><%= @recipe.name %></h2>
+
+    <div id="recipe-details-information">
+    <div class="prepare-toggle">
+      <p>Preparation time: <b><%= @recipe.preparation_time_hours %> hours</b></p>
+
+      <div>
+
+      <% if @recipe.user == current_user %>
+  <div class="toggle-container">
+    <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+      <label for="toggle">
+        <b>Public</b>
+      </label>
+      <div class="toggle-label">
+        <%= f.check_box :public, id: 'toggle', class: 'toggle-input' %>
+        <%= f.label :public, class: 'toggle-label', for: 'toggle' do %>
+          <div class="toggle-indicator"></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+      
+        
+      </div>
+    </div>
+    <p>Cooking time: <b><%= @recipe.cooking_time_hours %> hours</b></p>
+    <hr style="margin-top: 10px; margin-bottom: 10px;">
+    <p class="fs-5"><%= @recipe.description %></p>
+  </div>
+
+
+  <div id="shopping-list-generate-button">
+    <button type="button"
+    id="generate-shopping-list"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#myModal"
+      onclick="showModal()">
+        Generate shopping list
+    </button>
+
+    
+
+    <!-- Modal (initially hidden) -->
+    <div class="custom-modal" id="myModal" style="display: none;">
+      <div class="custom-modal-content card">
+        <div class="custom-modal-header">
+          <h5 class="custom-modal-title">Generating Shopping List</h5>
+          <button type="button" class="custom-btn-close" onclick="hideModal()" aria-label="Close"></button>
+        </div>
+        <div class="custom-modal-body">
+          <!-- Add content for your modal here -->
+          <div>
+  <div>
+    <div>
+      
+      <div id="">
+        <h6>Choose an inventory to use</h6>
+        <%= form_with url: shopping_lists_path(recipe_id: @recipe.id), method: :get do |form| %>
+          <div id="modal-input">
+          <div>
+          <%= select("inventory", "inventory_id", Inventory.all.collect { |p| [ p.name, p.id ] }, { prompt: 'Select Inventory' }) %>
+          <%= form.number_field :recipe_id, class: "form-control", value: @recipe.id, hidden: true %>
+          </div>
+      <div>
+        <%= form.submit "Generate", data: { turbo: false }, class: "btn btn-primary generate-submit" %>
+        <% end %>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+        <div class="custom-modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="hideModal()">Close</button>
+          <!-- Add additional buttons or actions here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+
+    <% if @recipe.user == current_user %>
+    <button class="add-ingredient-button">
+    <%= link_to "Add ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
+    </button>
+    <% end %>
+  </div>
+
+  
+    <hr>
+
+
+    
+      <% if @recipe_foods.empty? %>
+        <h4>No foods have been added yet.</h4>
+      <% else %>
+
+      <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @inventory_foods.each do |recipe_food| %>
+          <tr>
+        <td><div><%= recipe_food.food.name %></div></td>
+        <td><div><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></div></td>
+        <td><div><b>$<%= recipe_food.food.price_dollars * recipe_food.quantity %></b></div></td>
+        <td class="action">
+        <div>
+        <% if @recipe.user == current_user %>
+        <%= link_to "Modify", edit_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), class: "btn btn-primary" %>
+        <% end %>
+
+        <% if @recipe.user == current_user %>
+        <%= link_to "Remove", recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+        </td>
+      </tr>
+        <% end %>
+    </tbody>
+  </table>
+      <% end %>
+      
+  <% else %>
+    <h4>You are not authorized to see this recipe.</h4>
+<% end %>
+</div>
+
+
+  <!-- JavaScript to handle modal visibility -->
+  <script>
+    function showModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    function hideModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+  </script>
+
+  <!-- Include Bootstrap JS library -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+

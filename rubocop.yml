@@ -1,0 +1,81 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/**/*"
+    - "bin/*" 
+    - "config/**/*"
+    - "Guardfile"
+    - "Rakefile"
+    - "node_modules/**/*"
+    - "spec/system/*"
+
+  DisplayCopNames: true
+
+Layout/LineLength:
+  Exclude:
+    - "app/controllers/*"
+    - "app/models/*"
+    - "app/helpers/*"
+    - "spec/system/*"
+  Max: 200
+  Enabled: False
+
+Metrics/MethodLength:
+  Exclude:
+    - "app/controllers/*"
+    - "app/models/*"
+    - "app/helpers/*"
+    - "spec/system/*"
+  Max: 50
+  Enabled: False
+Metrics/AbcSize:
+  Exclude:
+    - "app/controllers/*"
+    - "app/models/*"
+    - "app/helpers/*"
+    - "spec/system/*"
+  Max: 70
+  Enabled: False
+Metrics/ClassLength:
+  Max: 200
+  Enabled: False
+Metrics/BlockLength:
+  Exclude:
+    - "app/controllers/*"
+    - "app/models/*"
+    - "app/helpers/*"
+    - "spec/system/*"
+  AllowedMethods: ['describe']
+  Max: 300
+  Enabled: False
+
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/EachForSimpleLoop:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
+Style/DefWithParentheses:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Layout/HashAlignment:
+  EnforcedColonStyle: key
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+Lint/RaiseException:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
