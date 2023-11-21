@@ -21,15 +21,16 @@ module ShoppingListsHelper
 
     @recipe_foods_ids_in_inventory.each do |food_id|
       target_food = food(food_id)
-      @shoppinglist.push({ food_id:,
+      recipe_food = RecipeFood.find_by(recipe_id: params[:recipe_id], food_id:)
+      inventory_food = InventoryFood.find_by(inventory_id: params[:inventory][:inventory_id], food_id:)
+
+      @shoppinglist.push({
+                           food_id:,
                            food_name: target_food.name,
                            food_uom: target_food.measurement_unit,
-                           quantity: RecipeFood.find_by(recipe_id: params[:recipe_id],
-                                                        food_id:).quantity - InventoryFood.find_by(inventory_id: params[:inventory][:inventory_id],
-                                                                                                   food_id:).quantity,
-                           price: target_food.price_dollars * (RecipeFood.find_by(recipe_id: params[:recipe_id],
-                                                                                  food_id:).quantity - InventoryFood.find_by(inventory_id: params[:inventory][:inventory_id],
-                                                                                                                             food_id:).quantity) })
+                           quantity: recipe_food.quantity - inventory_food.quantity,
+                           price: target_food.price_dollars * (recipe_food.quantity - inventory_food.quantity)
+                         })
     end
 
     # Filter out foods with 0 or less than 0 quantity
