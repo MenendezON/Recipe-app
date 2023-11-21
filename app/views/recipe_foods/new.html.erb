@@ -1,0 +1,16 @@
+<div>
+  <% if current_user.id == @recipe.user_id %>
+    <h2>Add new food to recipe:</h2>
+    <%= form_with url: recipe_foods_path(recipe_id: @recipe) do |form| %>
+
+      <%= select("food", "food_id", Food.all.collect { |p| [ p.name, p.id ] }, { prompt: 'Select Food' }) %>
+
+      <div>
+        <%= form.label :quantity %> <br>
+        <%= form.number_field :quantity, class: "form-control" , required: true %>
+      </div>
+
+      <%= form.submit "Create", data: { turbo: false }, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>
