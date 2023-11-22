@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_135052) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inventory_foods", force: :cascade do |t|
+    t.integer "quantity", default: 0, null: false
+    t.bigint "inventory_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_inventory_foods_on_food_id"
+    t.index ["inventory_id"], name: "index_inventory_foods_on_inventory_id"
+  end
+
   create_table "recipe_foods", force: :cascade do |t|
     t.decimal "quantity", default: "0.0", null: false
     t.bigint "recipe_id", null: false
