@@ -59,6 +59,12 @@ Example commands:
 
 ## 👥 Authors <a name="authors"></a>
 
+👤 **Menendez NELSON**
+
+- GitHub: [@menendezon](https://github.com/menendezon)
+- Twitter: [@menendezon](https://twitter.com/menendezon)
+- LinkedIn: [MenendezON](https://linkedin.com/in/menendezon)
+
 👤 **malikhaiderkhan**
 
 - GitHub: [@malikhaiderkhan](https://github.com/malikhaiderkhan)
