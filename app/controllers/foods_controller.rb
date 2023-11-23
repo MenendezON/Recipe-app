@@ -1,4 +1,8 @@
 class FoodsController < ApplicationController
+  def index
+    @foods = Food.all
+  end
+
   def new
     @food = Food.new
   end
@@ -16,9 +20,9 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     if @food.destroy
-      redirect_to root_path, notice: 'Food successfully deleted.'
+      redirect_to recipe_path(@food), notice: 'Food successfully deleted.'
     else
-      redirect_to root_path, alert: 'Food not deleted.'
+      redirect_to recipe_path(@food), alert: 'Food not deleted.'
     end
   end
 

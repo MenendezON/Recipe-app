@@ -1,6 +1,6 @@
 <div>
 <% if @recipe.public || @recipe.user == current_user %>
-<h1 class="show-recipe-heading">Recipe 1</h1>
+<h1 class="show-recipe-heading">Recipe <%= Recipe.all.index(@recipe) + 1 %></h1>
     <h2 class="show-recipe-name"><%= @recipe.name %></h2>
 
     <div id="recipe-details-information">
@@ -93,11 +93,8 @@
   </div>
   
     <hr>
-    
-      <% if @recipe_foods.empty? %>
-        <h4>No foods have been added yet.</h4>
-      <% else %>
 
+      <% if @recipe_foods.present? %>
       <table>
     <thead>
       <tr>
@@ -108,7 +105,7 @@
       </tr>
     </thead>
     <tbody>
-        <% @inventory_foods.each do |recipe_food| %>
+        <% @recipe_foods.each do |recipe_food| %>
           <tr>
         <td><div><%= recipe_food.food.name %></div></td>
         <td><div><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></div></td>
@@ -128,7 +125,9 @@
         <% end %>
     </tbody>
   </table>
-      <% end %>
+  <% else %>
+  <h4>No foods have been added yet.</h4>
+  <% end %>
       
   <% else %>
     <h4>You are not authorized to see this recipe.</h4>
