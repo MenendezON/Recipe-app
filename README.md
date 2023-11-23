@@ -90,8 +90,6 @@ Example commands:
 - [ ] **Integration specs for Views and fixing n+1 problems**
 - [ ] **Add Devise**
 - [ ] **Add authorization rules**
-- [ ] **Add API endpoints**
-- [ ] **API documentation**
 
 <!-- CONTRIBUTING -->
 
