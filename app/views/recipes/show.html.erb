@@ -1,6 +1,6 @@
 <div>
 <% if @recipe.public || @recipe.user == current_user %>
-<h1 class="show-recipe-heading">Recipe 1</h1>
+<h1 class="show-recipe-heading">Recipe <%= Recipe.all.index(@recipe) + 1 %></h1>
     <h2 class="show-recipe-name"><%= @recipe.name %></h2>
 
     <div id="recipe-details-information">
@@ -104,6 +104,7 @@
         <h4>No foods have been added yet.</h4>
       <% else %>
 
+      <% if @inventory_foods.present? %>
       <table>
     <thead>
       <tr>
@@ -134,6 +135,9 @@
         <% end %>
     </tbody>
   </table>
+  <% else %>
+  <h4>No foods have been added yet.</h4>
+  <% end %>
       <% end %>
       
   <% else %>
