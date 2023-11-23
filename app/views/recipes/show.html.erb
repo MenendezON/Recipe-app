@@ -85,20 +85,14 @@
     </div>
   </div>
 
-
-    
-
     <% if @recipe.user == current_user %>
     <button class="add-ingredient-button">
     <%= link_to "Add ingredient", new_recipe_food_path(recipe_id: @recipe.id) %>
     </button>
     <% end %>
   </div>
-
   
     <hr>
-
-
     
       <% if @recipe_foods.empty? %>
         <h4>No foods have been added yet.</h4>
