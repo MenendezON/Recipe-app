@@ -1,4 +1,4 @@
-class PublicRecipiesController < ApplicationController
+class PublicRecipesController < ApplicationController
   def index
     @user = current_user
     @recipes = Recipe.where(public: true)

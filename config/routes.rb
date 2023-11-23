@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :recipes, only: %i[index show new create destroy]
 
+  resources :foods, only: [:index, :show, :new, :create, :destroy]
 
   resources :inventory_foods, only: %i[new create destroy]
 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   
   resources :recipe_foods, only: %i[new create destroy edit update]
 
-  resources :public_recipies, only: [:index]
+  resources :public_recipes, only: [:index]
 
   get '/shopping_lists', to: 'shopping_lists#index', as: 'shopping_lists'
 
