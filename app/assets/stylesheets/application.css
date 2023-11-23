@@ -26,26 +26,26 @@ nav {
   height: 50px;
 }
 
-nav>div {
+nav > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1300px;
-  margin:auto
+  margin: auto;
 }
 
-.container{
+.container {
   width: 1300px;
-  margin:auto
+  margin: auto;
 }
 
-nav>div>a {
+nav > div > a {
   font-size: x-large;
   font-weight: bold;
   text-decoration: none;
 }
 
-#navbarSupportedContent{
+#navbarSupportedContent {
   display: flex;
   flex-direction: row;
 }
@@ -54,17 +54,17 @@ nav>div>a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:11px
+  padding: 11px;
 }
 
-#menu-main>li>a {
-  padding:15px 5px;
+#menu-main > li > a {
+  padding: 15px 5px;
   font-size: 14pt;
 }
 
-#menu-main>li>a:hover {
-  background-color: #ffffff;
-  color:#283747;
+#menu-main > li > a:hover {
+  background-color: #fff;
+  color: #283747;
   text-decoration: none;
 }
 
@@ -74,56 +74,62 @@ nav>div>a {
   align-items: center;
 }
 
-#signin-up-menu>li {
+#signin-up-menu > li {
   background-color: #34689b;
   width: 40px;
   height: 40px;
   text-align: center;
-  padding:8px;
-  border-radius:25px
+  padding: 8px;
+  border-radius: 25px;
 }
 
-.login-page{
+.login-page {
   width: 500px;
-  margin:100px auto;
-  border:1px solid silver;
+  margin: 100px auto;
+  border: 1px solid silver;
   border-radius: 8px;
-  padding:15px 30px;
+  padding: 15px 30px;
   text-align: center;
 }
 
-.login-page>form>.field{
+.login-page > form > .field {
   text-align: left;
 }
 
 .login-page input[type=text],
 .login-page input[type=email],
-.login-page input[type=password]{
+.login-page input[type=password] {
   width: 100%;
-  height:30px;
-  padding:5px;
+  height: 30px;
+  padding: 5px;
   margin-bottom: 10px;
 }
 
-.login-page>form>.actions>input{
-  padding:10px;
-  border:1px solid #283747;
+.login-page > form > .actions > input {
+  padding: 10px;
+  border: 1px solid #283747;
   background-color: #283747;
-  color:white;
+  color: white;
   width: 100px;
   margin: 10px;
 }
 
-.login-page>form>.actions>input:hover{
+.login-page > form > .actions > input:hover {
   color: #283747;
   background-color: white;
 }
 
-#signin-up-menu>li button{
+.action button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+#signin-up-menu > li button {
   background-color: transparent;
   text-transform: uppercase;
-  color:#ffffff;
-  border:0;
+  color: #fff;
+  border: 0;
 }
 
 ul {
@@ -240,12 +246,6 @@ tr:hover {
 
 .action {
   text-align: center;
-}
-
-.action button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  cursor: pointer;
 }
 
 .public-recipes-action {
