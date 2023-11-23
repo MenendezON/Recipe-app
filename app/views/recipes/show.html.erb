@@ -93,12 +93,8 @@
   </div>
   
     <hr>
-    
-      <% if @recipe_foods.empty? %>
-        <h4>No foods have been added yet.</h4>
-      <% else %>
 
-      <% if @inventory_foods.present? %>
+      <% if @recipe_foods.present? %>
       <table>
     <thead>
       <tr>
@@ -109,7 +105,7 @@
       </tr>
     </thead>
     <tbody>
-        <% @inventory_foods.each do |recipe_food| %>
+        <% @recipe_foods.each do |recipe_food| %>
           <tr>
         <td><div><%= recipe_food.food.name %></div></td>
         <td><div><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></div></td>
@@ -132,7 +128,6 @@
   <% else %>
   <h4>No foods have been added yet.</h4>
   <% end %>
-      <% end %>
       
   <% else %>
     <h4>You are not authorized to see this recipe.</h4>
