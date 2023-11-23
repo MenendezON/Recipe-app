@@ -16,7 +16,7 @@
 
         <div>
             <%= form.label :measurement_unit %> <br>
-            <%= form.text_field :measurement_unit %>
+            <%= form.select :measurement_unit, ['kg', 'pounds', 'grams'], { prompt: 'Select a unit' } %>
         </div>
 
         <div>
