@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe InventoryFood, type: :model do
   let(:user) { User.new(name: 'pepe', email: 'email1@email.com', password: 'abcdef') }
-  let(:inventory) { Inventory.create(user: user) }
+  let(:inventory) { Inventory.create(user:) }
   let(:food) do
     Food.create(
       name: 'Rice',
@@ -14,8 +14,8 @@ RSpec.describe InventoryFood, type: :model do
   subject do
     InventoryFood.new(
       quantity: 4,
-      inventory: inventory,
-      food: food
+      inventory:,
+      food:
     )
   end
 
