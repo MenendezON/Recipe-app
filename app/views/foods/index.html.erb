@@ -1,0 +1,29 @@
+<h2>Foods</h2>
+
+<section>
+  <%= link_to "Add Food", new_food_path, %>
+  <%if @foods.present? %>
+    <ul>
+      <li>
+        <div><b>Food</b></div>
+        <div><b>Measurement Unit</b></div>
+        <div><b>Price</b></div>
+        <div><b>Actions</b></div>
+      </li>
+      <% @foods.each do | food | %>
+        <li>
+          <div><%= food.name %></div>
+          <div><%= food.measurement_unit %></div>
+          <div><%= food.price_dollars %></div>
+          <div>
+            <%= button_to "Delete", food_path(food), class: "btn btn-danger", method: :delete %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div>
+      <p> No foods registered. </p>
+    </div>
+  <% end %>
+</section>
