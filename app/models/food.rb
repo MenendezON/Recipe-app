@@ -4,5 +4,5 @@ class Food < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 250 }
   validates :measurement_unit, presence: true
-  validates :price_dollars, presence: true, numericality: { greater_than: 0 }
+  validates :price_dollars, numericality: { greater_than: 0, message: 'must be greater than 0' }
 end
