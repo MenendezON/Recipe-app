@@ -9,6 +9,7 @@
 <% else %>
 
     <% @recipes.each_with_index do |recipe, index| %>
+        <a href="<%= recipe_path(recipe) %>">
         <div class="public-recipe">
         <div class="public-recipe-main-info">
             <div class="public-recipe-name">
@@ -20,9 +21,6 @@
         </div>
 
         <div class="public-recipes-action">
-          <button class="btn btn-primary">
-          <%= link_to "Show Details", recipe_path(recipe), class: "btn btn-primary" %>
-          </button>
         
 
         <% if @user.id == recipe.user_id %>
@@ -46,6 +44,7 @@
                 
             </div>
         </div>
+        </a>
     <% end %>
 <% end %>
 </div>

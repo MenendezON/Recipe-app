@@ -13,6 +13,7 @@
 <% else %>
 
     <% @recipes.each_with_index do |recipe, index| %>
+        <a href="<%= recipe_path(recipe) %>">
         <div class="recipe">
         <div class="recipe-main-info">
         <div class="recipe-heading">
@@ -22,9 +23,6 @@
                 <h3><%= recipe.name %></h3>
             </div>
             <div class="recipe-actions">
-                <button class="btn btn-primary">
-                    <%= link_to 'Show', recipe_path(recipe) %>
-                </button>
                 <button class="btn btn-danger">
                     <%= link_to 'Delete', recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, method: :delete %>
                 </button>
@@ -36,6 +34,7 @@
                 </p>
             </div>
         </div>
+        </a>
     <% end %>
 <% end %>
 </div>
