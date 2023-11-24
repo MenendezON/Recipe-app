@@ -1,0 +1,40 @@
+<div>
+  <h2>Add new recipe:</h2>
+  <%= turbo_frame_tag @recipe do %>
+    <%= form_with model: @recipe do |form| %>
+      <% if @recipe.errors.any? %>
+        <div role="alert">
+          <% @recipe.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <div>
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" , required: true %>
+      </div>
+
+      <div>
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control", required: true %>
+      </div>
+
+      <div>
+        <%= form.label :cooking_time_hours %>
+        <%= form.number_field :cooking_time_hours, step: 0.1, class: "form-control", required: true %>
+      </div>
+
+      <div>
+        <%= form.label :preparation_time_hours %>
+        <%= form.number_field :preparation_time_hours, step: 0.1, class: "form-control", required: true %>
+      </div>
+
+      <div>
+        <%= form.label :public, class: "form-check-label" %>
+        <%= form.check_box :public, class: "form-check-input" %>
+      </div>
+
+      <%= form.submit "Create", data: { turbo: false }, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

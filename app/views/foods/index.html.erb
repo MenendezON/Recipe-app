@@ -1,0 +1,28 @@
+<h2>Foods</h2>
+
+<section>
+  <%= link_to "Add Food", new_food_path, class: "nav-link-btn" %>
+
+  <table>
+  <%if @foods.present? %>
+    <tr>
+      <th>Food</th>
+      <th>Measurement unit</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    
+      <% @foods.each do | food | %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price_dollars %></td>
+        <td><%= button_to "Delete", food_path(food), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, method: :delete %></td>
+    </tr>
+      <% end %>
+  <% else %>
+    <div>
+      <p> No foods registered. </p>
+    </div>
+  <% end %>
+</section>
