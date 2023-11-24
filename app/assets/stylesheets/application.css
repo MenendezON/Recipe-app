@@ -21,6 +21,20 @@ a {
   padding: 5px 10px;
 }
 
+.nav-link-btn {
+  color: #283747;
+  padding: 5px 10px;
+  border: 1px solid #283747;
+  position: relative;
+  float: right;
+}
+
+.nav-link-btn:hover {
+  background-color: #283747;
+  border: 1px solid #283747;
+  color: white;
+}
+
 nav {
   background-color: #283747;
   height: 50px;
